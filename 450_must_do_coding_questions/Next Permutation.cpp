@@ -1,29 +1,29 @@
-class Solution {
+class Solution{
 public:
-    void nextPermutation(vector<int>& a) {
-        int n=a.size();
-        int i,j;
-        int z=n-1;
-        for(i=n-2;i>=0;i--)
-        if(a[i]<a[i+1])
-        break;
-        
+    vector<int> nextPermutation(int N, vector<int> arr){
+        int x,i;
+        for(i=N-2;i>=0;i--)
+        {
+            if(arr[i]<arr[i+1])
+            {
+                x=i;
+                break;
+            }
+        }
         if(i<0)
         {
-            reverse(a.begin(),a.end());
+            sort(arr.begin(),arr.end());
+            return arr;
         }
-        else
+        for( i=N-1;i>x;i--)
         {
-        for(j=n-1;j>i;j--)
-        if(a[j]>a[i])
-        break;
-        swap(a[i],a[j]);
-        
-            reverse(a.begin()+i+1,a.end());
+            if(arr[i]>arr[x])
+            {
+                swap(arr[i],arr[x]);
+                break;
+            }
         }
-
-        
-        
-        
+        reverse(arr.begin()+x+1,arr.end());
+        return arr;
     }
 };

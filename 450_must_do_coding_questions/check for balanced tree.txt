@@ -1,0 +1,23 @@
+bool finalans=false;
+int solve(Node* root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    int left=solve(root->left);
+    int right=solve(root->right);
+    if(abs(left-right)>1)
+     finalans=false;
+    return max(left,right)+1;
+}
+bool isBalanced(Node *root)
+{
+    if(root==NULL)
+    return true;
+    //int left=0,right=0;
+    finalans=true;
+     int ans=solve(root);
+    
+     return finalans;
+}

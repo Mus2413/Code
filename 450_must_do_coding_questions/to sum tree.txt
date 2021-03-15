@@ -1,0 +1,18 @@
+int solve(Node* root)
+{
+    if(root==NULL)
+    return 0;
+    int x=root->data;
+    int left=solve(root->left);
+    int right=solve(root->right);
+    root->data=left+right;
+    return x+root->data;
+    
+}
+void toSumTree(Node *node)
+{
+    if(node== NULL)
+    return ;
+     int x=solve(node);
+     return ;
+}

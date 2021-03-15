@@ -1,0 +1,63 @@
+class Solution {
+public:
+    /**
+     * @param s: a string
+     * @return: a root of this tree
+     */
+     TreeNode* solve(string &s)
+     {
+         if(s.length()==0)
+         return NULL;
+         if(s[0]==')')
+         {
+             s.erase(s.begin()+0);
+             return NULL;
+         }
+          TreeNode* temp;
+         if(s[0]>='0' && s[0]<='9')
+         {
+             temp=new TreeNode(s[0]-'0');
+              s.erase(s.begin()+0);
+            
+             
+         }
+        else if(s[0]=='-' && s[1]>='0' && s[1]<='9')
+         {
+             int x=s[1]-'0';
+             x=x*-1;
+            temp=new TreeNode(x);
+             s.erase(s.begin()+0);
+              s.erase(s.begin()+0);
+            
+         }
+         if(s[0]=='(')
+         {
+              s.erase(s.begin()+0);
+             temp->left=solve(s);
+         }
+         if(s[0]=='('){
+              s.erase(s.begin()+0);
+              temp->right=solve(s);
+             
+         }
+         if(s[0]==')')
+         {
+             s.erase(s.begin()+0);
+         }
+         return temp;
+        
+     }
+    TreeNode * str2tree(string &s) {
+
+        TreeNode* root=NULL;
+        if(s.length()==0)
+        return root;
+        else
+        {
+            int i=0;
+            
+            
+            return solve(s);
+        }
+    }
+};

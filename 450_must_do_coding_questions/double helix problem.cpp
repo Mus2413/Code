@@ -1,67 +1,58 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
- 
-int main()
-{
- 
-    int i,j,k;
-    int x,y,z;
-    int n1,n2;
-    int result1,result2,result;
- 
-    cout<<"Enter the number of elements in the first sequence ";
-    cin>>n1;
- 
-    result=result1=result2=0;
- 
-    vector<int> a(n1);
-    cout<<"Enter the values of the first sequence"<<endl;
-    for(i=0;i<n1;i++)
-    {
-        cin>>a[i];
-    }
- 
-    j=0;
- 
-    cout<<"Enter the number of elements in the second sequence ";
-    cin>>n2;
-    vector<int> b(n2);
- 
-    cout<<"Enter the values of the second sequence"<<endl;
-    for(i=0;i<n2;i++)
-    {
-       cin>>b[i]; 
-       result2+=b[i];
- 
-       while(j<n1 && a[j]<b[i])
-       {
-           result1+=a[j];
-           j++;
-       }
- 
-       if(j<n1 && a[j]==b[i])
-       {
-            result1+=a[j];
-            result+=max(result1,result2);     
- 
-            //reset
-            result1=0;
-            result2=0;
-            j++;
-       }
-    }
- 
- 
-    while(j<n1)
-    {
-        result1+=a[j];
-        j++;
-    }
- 
-    result+=max(result1,result2);     
- 
-    cout<<"The maximum sum of data obtained by walking over them is "<<endl;
-    cout<<result<<endl;
- 
-    return 0;
+#define ll long long int
+int main() {
+	// your code goes here
+	ll n;
+	cin>>n;
+	ll a[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	ll m;
+	cin>>m;
+	ll b[m];
+	for(int i=0;i<m;i++)
+	cin>>b[i];
+	ll i=0,j=0;
+	ll path1=0,path2=0,sum=0;
+	while(i<n && j<m)
+	{
+		if(a[i]<b[j])
+		{
+			path1+=a[i];
+			i++;
+		}
+		else if(a[i]>b[j])
+		{
+			path2+=b[j];
+			j++;
+		}
+		else
+		{
+		    //cout<<path1+a[i]<<" ";
+		    //cout<<path2 + a[i]<<" , ";
+			sum+=max(path1,path2)+a[i];
+			i++;
+			j++;
+			path1=0;
+			path2=0;
+		}
+	}
+
+	while(i<n)
+	{
+		path1+=a[i];
+		i++;
+	}
+	while(j<m)
+	{
+		path2+=b[j];
+		j++;
+	}
+		sum+=max(path1,path2);
+	cout<<sum<<endl;
+	
+	return 0;
 }
